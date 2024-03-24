@@ -2,22 +2,24 @@ class Thread {
   constructor(payload) {
     this._verifyPayload(payload);
 
+    this.id = payload.id;
     this.title = payload.title;
     this.body = payload.body;
     this.date = payload.date;
-    this.owner = payload.owner;
+    this.username = payload.username;
+    this.comments = payload.comments;
   }
 
   _verifyPayload(payload) {
     const {
-      title, body, date, owner,
+      id, title, body, date, username,
     } = payload;
 
-    if (!title || !body || !date || !owner) {
+    if (!id || !title || !body || !date || !username) {
       throw new Error('THREAD.NOT_CONTAIN_NEEDED_PROPERTY');
     }
 
-    if (typeof title !== 'string' || typeof body !== 'string' || typeof date !== 'string' || typeof owner !== 'string') {
+    if (typeof id !== 'string' || typeof title !== 'string' || typeof body !== 'string' || typeof date !== 'string' || typeof username !== 'string' || !Array.isArray(comments)) {
       throw new Error('THREAD.NOT_MEET_DATA_TYPE_SPECIFICATION');
     }
   }

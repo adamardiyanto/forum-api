@@ -6,19 +6,18 @@ describe('a NewThread entities', () => {
     const payload = {
       title: 'abc',
     };
-
+    const owner = 'user-123';
     // Action and Assert
-    expect(() => new NewThread(payload)).toThrowError('NEW_THREAD.NOT_CONTAIN_NEEDED_PROPERTY');
+    expect(() => new NewThread(owner, payload)).toThrowError('NEW_THREAD.NOT_CONTAIN_NEEDED_PROPERTY');
   });
 
   it('should create newthread object correctly', () => {
     const payload = {
       title: 'new thread',
       body: 'body thread',
-      owner: 'user-123',
     };
-
-    const { title, body, owner } = new NewThread(payload);
+    const owner = 'user-123';
+    const { title, body } = new NewThread(owner, payload);
 
     expect(title).toEqual(payload.title);
     expect(body).toEqual(payload.body);

@@ -5,44 +5,31 @@ const AddThreadUseCase = require('../AddthreadUseCase');
 
 describe('addThreadUseCase', () => {
   it('should orchestrating the add thread action correctly', async () => {
+    const useCaseOwner = 'user-123';
     const useCasePayload = {
       title: 'new thread',
       body: '12345',
-      date: '2024-03-17',
-      owner: 'user-123',
     };
 
     const mockAddedThread = new AddedThread({
       id: 'thread-123',
       title: useCasePayload.title,
-      body: useCasePayload.body,
-      date: useCasePayload.date,
-      owner: useCasePayload.owner,
+      owner: useCaseOwner,
     });
 
     const mockThreadRepository = new ThreadRepository();
 
     mockThreadRepository.addThread = jest.fn().mockImplementation(() => Promise.resolve(mockAddedThread));
-    mockThreadRepository.getThreadById = jest.fn().mockImplementation(() => Promise.resolve(mockAddedThread));
-    mockThreadRepository.isThreadExist = jest.fn().mockImplementation(() => Promise.resolve());
 
-    const getThreadUseCase = new AddThreadUseCase({ threadRepository: mockThreadRepository });
+    const addThreadUseCase = new AddThreadUseCase({ threadRepository: mockThreadRepository });
 
-    const addedThread = await getThreadUseCase.execute(useCasePayload);
+    const addedThread = await addThreadUseCase.execute(useCaseOwner, useCasePayload);
 
-    expect(addedThread).toStrictEqual(new AddedThread({
-      id: 'thread-123',
+    expect(addedThread).toStrictEqual(mockAddedThread);
+
+    expect(mockThreadRepository.addThread).toBeCalledWith(new NewThread(useCaseOwner, {
       title: useCasePayload.title,
       body: useCasePayload.body,
-      date: useCasePayload.date,
-      owner: useCasePayload.owner,
-    }));
-
-    expect(mockThreadRepository.addThread).toBeCalledWith(new NewThread({
-      title: useCasePayload.title,
-      body: useCasePayload.body,
-      date: useCasePayload.date,
-      owner: useCasePayload.owner,
     }));
   });
 });
