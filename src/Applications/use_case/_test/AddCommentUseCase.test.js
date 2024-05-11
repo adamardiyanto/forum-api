@@ -6,6 +6,7 @@ const AddCommentUseCase = require('../AddCommentUseCase');
 describe('addCommentUseCase ', () => {
   it('should orchestrating the add comment action correctly ', async () => {
     const useCaseOwner = 'user-123';
+    const threadId = 'thread-123';
     const useCasePayload = {
       content: 'new comment',
     };
@@ -22,10 +23,10 @@ describe('addCommentUseCase ', () => {
 
     const addCommentUseCase = new AddCommentUseCase({ commentRepository: mockCommentRepository });
 
-    const addedComment = await addCommentUseCase.execute(useCaseOwner, useCasePayload);
+    const addedComment = await addCommentUseCase.execute(useCaseOwner, threadId, useCasePayload.content);
 
     expect(addedComment).toStrictEqual(mockAddedComment);
 
-    expect(mockCommentRepository.addComment).toBeCalledWith(new NewComment(useCaseOwner, { content: useCasePayload.content }));
+    expect(mockCommentRepository.addComment).toBeCalledWith(new NewComment(useCaseOwner, threadId, useCasePayload.content));
   });
 });

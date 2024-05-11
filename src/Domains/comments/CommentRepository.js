@@ -3,19 +3,11 @@ class CommentRepository {
     throw new Error('COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   }
 
-  async isCommentExist(id) {
-    throw new Error('COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
-  }
-
   async verifyCommentOwner(commentId, userId) {
     throw new Error('COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   }
 
-  async deleteComment(id) {
-    throw new Error('COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
-  }
-
-  async getCommentByThreadId(threadId) {
+  async deleteComment(owner, threadId, id) {
     throw new Error('COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   }
 }

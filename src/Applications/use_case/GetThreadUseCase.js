@@ -11,7 +11,6 @@ class GetThreadUseCase {
         commentArray[index] = '**komentar telah dihapus**';
       }
     });
-
     return thread;
   }
 }

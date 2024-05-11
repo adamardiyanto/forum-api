@@ -1,20 +1,20 @@
 class Comment {
   constructor(payload) {
     this._verifyPayload(payload);
-
-    this.id = payload.id;
-    this.username = payload.username;
-    this.content = payload.content;
-    this.date = payload.date;
-    this.isDelete = payload.isDelete;
+    const {
+      id, content, username, date, isDelete,
+    } = payload;
+    this.id = id;
+    this.username = username;
+    this.content = content;
+    this.date = date;
+    this.isDelete = isDelete;
   }
 
-  _verifyPayload(payload) {
-    const {
-      id, username, content, date, isDelete,
-    } = payload;
-
-    if (!id || !content || !date || !username || !isDelete) {
+  _verifyPayload({
+    id, content, username, date, isDelete,
+  }) {
+    if (!id || !content || !date || !username) {
       throw new Error('COMMENT.NOT_CONTAIN_NEEDED_PROPERTY');
     }
 

@@ -16,7 +16,7 @@ describe('Thread entities ', () => {
       title: 'new thread',
       body: 'body thread',
       date: '2024-03-17',
-      owner: 'user-123',
+      username: 'user-123',
       comments: {},
     };
 
@@ -25,22 +25,22 @@ describe('Thread entities ', () => {
 
   it('should create Thread entities correctly', () => {
     const payload = {
-      id: 'comment-123',
+      id: 'thread-123',
       title: 'new thread',
       body: 'body thread',
       date: '2024-03-17',
-      owner: 'user-123',
+      username: 'user-123',
       comments: [
         new Comment({
           id: 'comment-123',
-          owner: 'joe',
           content: 'this content',
+          username: 'joe',
           date: '2024-03-17',
           isDelete: false,
         }),
         new Comment({
           id: 'comment-124',
-          owner: 'joel',
+          username: 'user-123',
           content: 'this content2',
           date: '2024-03-17',
           isDelete: true,

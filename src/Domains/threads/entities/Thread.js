@@ -12,7 +12,7 @@ class Thread {
 
   _verifyPayload(payload) {
     const {
-      id, title, body, date, username,
+      id, title, body, date, username, comments,
     } = payload;
 
     if (!id || !title || !body || !date || !username) {

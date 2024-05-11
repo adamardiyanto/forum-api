@@ -1,18 +1,18 @@
 class NewComment {
-  constructor(owner, payload) {
-    this._verifyPayload(payload);
+  constructor(owner, threadId, content) {
+    this._verifyPayload(content);
     this._verifyOwner(owner);
-    this.content = payload.content;
+    this._verifyThreadId(threadId);
+    this.content = content;
     this.owner = owner;
-    this.threadId = payload.threadId;
+    this.threadId = threadId;
   }
 
-  _verifyPayload(payload) {
-    const { content, threadId } = payload;
-    if (!content || !threadId) {
+  _verifyPayload(content) {
+    if (!content) {
       throw new Error('NEW_COMMENT.NOT_CONTAIN_NEEDED_PROPERTY');
     }
-    if (typeof content !== 'string' || typeof threadId !== 'string') {
+    if (typeof content !== 'string') {
       throw new Error('NEW_COMMENT.NOT_MEET_DATA_TYPE_SPECIFICATION');
     }
   }
@@ -22,6 +22,15 @@ class NewComment {
       throw new Error('NEW_COMMENT.NOT_CONTAIN_NEEDED_PROPERTY');
     }
     if (typeof owner !== 'string') {
+      throw new Error('NEW_COMMENT.NOT_MEET_DATA_TYPE_SPECIFICATION');
+    }
+  }
+
+  _verifyThreadId(threadId) {
+    if (!threadId) {
+      throw new Error('NEW_COMMENT.NOT_CONTAIN_NEEDED_PROPERTY');
+    }
+    if (typeof threadId !== 'string') {
       throw new Error('NEW_COMMENT.NOT_MEET_DATA_TYPE_SPECIFICATION');
     }
   }

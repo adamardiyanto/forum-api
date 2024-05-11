@@ -6,25 +6,25 @@ const Comment = require('../../../Domains/comments/entities/Comment');
 describe('getThreadUseCase ', () => {
   it('should orchestrating the add thread action correctly', async () => {
     const expectedThread = new Thread({
-      id: 'comment-123',
+      id: 'thread-123',
       title: 'new thread',
       body: 'body thread',
       date: '2024-03-17',
-      owner: 'user-123',
+      username: 'user-123',
       comments: [
         new Comment({
           id: 'comment-123',
-          owner: 'joe',
+          username: 'joe',
           content: 'this content',
           date: '2024-03-17',
           isDelete: false,
         }),
         new Comment({
           id: 'comment-124',
-          owner: 'joel',
+          username: 'user-123',
           content: 'this content2',
           date: '2024-03-17',
-          isDelete: true,
+          isDelete: false,
         }),
       ],
     });

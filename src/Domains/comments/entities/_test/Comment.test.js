@@ -32,7 +32,7 @@ describe('Comment entities ', () => {
     const comment = new Comment(payload);
 
     expect(comment).toBeInstanceOf(Comment);
-    expect(comment.is).toEqual(payload.is);
+    expect(comment.id).toEqual(payload.id);
     expect(comment.username).toEqual(payload.username);
     expect(comment.content).toEqual(payload.content);
     expect(comment.date).toEqual(payload.date);

@@ -12,7 +12,7 @@ describe('an addedComment entities ', () => {
     const payload = {
       content: 'new comment',
       owner: 12345,
-      threadId: 'thread-123',
+      id: 'comment-123',
     };
 
     expect(() => new AddedComment(payload)).toThrowError('ADDED_COMMENT.NOT_MEET_DATA_TYPE_SPECIFICATION');
@@ -22,7 +22,7 @@ describe('an addedComment entities ', () => {
     const payload = {
       content: 'new comment',
       owner: 'user-123',
-      threadId: 'thread-123',
+      id: 'comment-123',
     };
 
     const addedComment = new AddedComment(payload);
@@ -30,6 +30,6 @@ describe('an addedComment entities ', () => {
     expect(addedComment).toBeInstanceOf(AddedComment);
     expect(addedComment.content).toEqual(payload.content);
     expect(addedComment.owner).toEqual(payload.owner);
-    expect(addedComment.threadId).toEqual(payload.threadId);
+    expect(addedComment.id).toEqual(payload.id);
   });
 });
