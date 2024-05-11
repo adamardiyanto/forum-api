@@ -30,7 +30,7 @@ class CommentRepositoryPostgres extends CommentRepository {
     await this._pool.query(query);
   }
 
-  async verifyUserComment(userId, commentId) {
+  async verifyCommentOwner(userId, commentId) {
     const query = {
       text: 'SELECT owner FROM comments WHERE id = $1',
       values: [commentId],

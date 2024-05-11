@@ -1,6 +1,7 @@
 const NewComment = require('../../../Domains/comments/entities/NewComment');
 const AddedComment = require('../../../Domains/comments/entities/AddedComment');
 const CommentRepository = require('../../../Domains/comments/CommentRepository');
+const ThreadRepository = require('../../../Domains/threads/ThreadRepository');
 const AddCommentUseCase = require('../AddCommentUseCase');
 
 describe('addCommentUseCase ', () => {
@@ -17,13 +18,16 @@ describe('addCommentUseCase ', () => {
       owner: useCaseOwner,
     });
 
+    const mockThreadRepository = new ThreadRepository();
     const mockCommentRepository = new CommentRepository();
+
+    mockThreadRepository.isThreadExists = jest.fn(() => Promise.resolve());
 
     mockCommentRepository.addComment = jest.fn().mockImplementation(() => Promise.resolve(mockAddedComment));
 
-    const addCommentUseCase = new AddCommentUseCase({ commentRepository: mockCommentRepository });
+    const addCommentUseCase = new AddCommentUseCase({ commentRepository: mockCommentRepository, threadRepository: mockThreadRepository });
 
-    const addedComment = await addCommentUseCase.execute(useCaseOwner, threadId, useCasePayload.content);
+    const addedComment = await addCommentUseCase.execute(useCaseOwner, threadId, useCasePayload);
 
     expect(addedComment).toStrictEqual(mockAddedComment);
 

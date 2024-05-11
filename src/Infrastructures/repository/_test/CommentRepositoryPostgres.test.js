@@ -77,7 +77,7 @@ describe('comment repositorypostgres', () => {
       const commentRepositoryPostgres = new CommentRepositoryPostgres(pool, fakeIdGenerator);
       await commentRepositoryPostgres.addComment(newComment);
 
-      await expect(commentRepositoryPostgres.verifyUserComment('user-321', 'comment-111')).rejects.toThrow(NotFoundError);
+      await expect(commentRepositoryPostgres.verifyCommentOwner('user-321', 'comment-111')).rejects.toThrow(NotFoundError);
     });
     it('AuthorizationError when comment deleted by non owner', async () => {
       await UsersTableTestHelper.addUser({
@@ -96,7 +96,7 @@ describe('comment repositorypostgres', () => {
       const newComment = new NewComment('user-321', 'thread-123', 'comment');
       const commentRepositoryPostgres = new CommentRepositoryPostgres(pool, fakeIdGenerator);
       await commentRepositoryPostgres.addComment(newComment);
-      await expect(commentRepositoryPostgres.verifyUserComment('user-333', 'comment-123')).rejects.toThrow(AuthorizationError);
+      await expect(commentRepositoryPostgres.verifyCommentOwner('user-333', 'comment-123')).rejects.toThrow(AuthorizationError);
     });
     it('not error when comment deleted by owner', async () => {
       await UsersTableTestHelper.addUser({
@@ -115,7 +115,7 @@ describe('comment repositorypostgres', () => {
       const newComment = new NewComment('user-321', 'thread-123', 'comment');
       const commentRepositoryPostgres = new CommentRepositoryPostgres(pool, fakeIdGenerator);
       await commentRepositoryPostgres.addComment(newComment);
-      await expect(commentRepositoryPostgres.verifyUserComment('user-321', 'comment-123')).resolves.not.toThrow(AuthorizationError);
+      await expect(commentRepositoryPostgres.verifyCommentOwner('user-321', 'comment-123')).resolves.not.toThrow(AuthorizationError);
     });
   });
   describe('deletecomment', () => {

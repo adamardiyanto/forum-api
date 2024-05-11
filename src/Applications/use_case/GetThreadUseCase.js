@@ -4,14 +4,16 @@ class GetThreadUseCase {
   }
 
   async execute(threadId) {
-    await this._threadRepository.isThreadExist(threadId);
-    const thread = await this._threadRepository.getThreadById(threadId);
-    thread.comments.forEach((part, index, commentArray) => {
+    await this._threadRepository.isThreadExists(threadId);
+    const threadDetail = await this._threadRepository.getThreadById(threadId);
+    threadDetail.comments.forEach((part, index, commentArrays) => {
       if (part.isDelete) {
-        commentArray[index] = '**komentar telah dihapus**';
+        commentArrays[index].content = '**komentar telah dihapus**';
       }
+      delete commentArrays[index].isDelete;
     });
-    return thread;
+
+    return threadDetail;
   }
 }
 

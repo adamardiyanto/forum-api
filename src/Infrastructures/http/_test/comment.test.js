@@ -44,7 +44,7 @@ describe('/threads/{threadId}/comments endpoint', () => {
     });
 
     it('should response 400 when request payload not contain needed property', async () => {
-      const payload = {};
+      const payload = { content: '' };
       const server = await createServer(container);
 
       const response = await server.inject({
@@ -126,7 +126,7 @@ describe('/threads/{threadId}/comments endpoint', () => {
     it('should response 403 when comment it is not the owner', async () => {
       const server = await createServer(container);
 
-      const anotherAccessToken = await ServerTestHelper.getAccessToken('user-321', 'dicoding');
+      const anotherAccessToken = await ServerTestHelper.getAccessToken('user-321', 'qwerty');
 
       await CommentsTableTestHelper.addComment({
         userId: 'user-123',
@@ -135,7 +135,7 @@ describe('/threads/{threadId}/comments endpoint', () => {
 
       const response = await server.inject({
         method: 'DELETE',
-        url: '/threads/thread-id_test/comments/comment-id_test',
+        url: '/threads/thread-123/comments/comment-123',
         headers: {
           Authorization: `Bearer ${anotherAccessToken}`,
         },
@@ -169,7 +169,7 @@ describe('/threads/{threadId}/comments endpoint', () => {
 
       const response = await server.inject({
         method: 'DELETE',
-        url: '/threads/thread-id_test/comments/comment-id_test',
+        url: '/threads/thread-123/comments/comment-id_test',
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },

@@ -31,13 +31,13 @@ describe('getThreadUseCase ', () => {
 
     const mockThreadRepository = new ThreadRepository();
     mockThreadRepository.getThreadById = jest.fn().mockImplementation(() => Promise.resolve(expectedThread));
-    mockThreadRepository.isThreadExist = jest.fn().mockImplementation(() => Promise.resolve());
+    mockThreadRepository.isThreadExists = jest.fn().mockImplementation(() => Promise.resolve());
 
     const getThreadUseCase = new GetThreadUseCase({ threadRepository: mockThreadRepository });
 
     const getThread = await getThreadUseCase.execute('thread-123');
 
     expect(mockThreadRepository.getThreadById).toBeCalledWith('thread-123');
-    expect(mockThreadRepository.isThreadExist).toBeCalled();
+    expect(mockThreadRepository.isThreadExists).toBeCalled();
   });
 });
