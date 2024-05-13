@@ -5,7 +5,7 @@ describe('Comment entities ', () => {
     const payload = {
       content: 'new comment',
     };
-    expect(() => new Comment(payload).toThrowError('COMMENT.NOT_CONTAIN_NEEDED_PROPERTY'));
+    expect(() => new Comment(payload)).toThrowError('COMMENT.NOT_CONTAIN_NEEDED_PROPERTY');
   });
 
   it('should throw error when payload not meet data type specification ', () => {

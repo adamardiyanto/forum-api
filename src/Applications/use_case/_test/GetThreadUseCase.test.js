@@ -24,7 +24,7 @@ describe('getThreadUseCase ', () => {
           username: 'user-123',
           content: 'this content2',
           date: '2024-03-17',
-          isDelete: false,
+          isDelete: true,
         }),
       ],
     });

@@ -10,6 +10,36 @@ describe('a NewThread entities', () => {
     // Action and Assert
     expect(() => new NewThread(owner, payload)).toThrowError('NEW_THREAD.NOT_CONTAIN_NEEDED_PROPERTY');
   });
+  it('should throw error when payload did not contain needed property', () => {
+    // Arrange
+    const payload = {
+      title: 'abc',
+      body: 123,
+    };
+    const owner = 'user-123';
+    // Action and Assert
+    expect(() => new NewThread(owner, payload)).toThrowError('NEW_THREAD.NOT_MEET_DATA_TYPE_SPECIFICATION');
+  });
+  it('should throw error when owner did not contain needed property', () => {
+    // Arrange
+    const payload = {
+      title: 'abc',
+      body: 'body thread',
+    };
+    const owner = null;
+    // Action and Assert
+    expect(() => new NewThread(owner, payload)).toThrowError('NEW_THREAD.NOT_CONTAIN_NEEDED_PROPERTY');
+  });
+  it('should throw error when owner did not contain needed property', () => {
+    // Arrange
+    const payload = {
+      title: 'abc',
+      body: 'body thread',
+    };
+    const owner = 1223;
+    // Action and Assert
+    expect(() => new NewThread(owner, payload)).toThrowError('NEW_THREAD.NOT_MEET_DATA_TYPE_SPECIFICATION');
+  });
 
   it('should create newthread object correctly', () => {
     const payload = {

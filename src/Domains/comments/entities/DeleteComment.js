@@ -1,14 +1,14 @@
 class DeleteComment {
   constructor(owner, payload) {
-    this._verifyPayload(payload);
     this._verifyOwner(owner);
-    this.id = payload.id;
+    this._verifyPayload(payload);
+    const { id, threadId } = payload;
+    this.id = id;
     this.owner = owner;
-    this.threadId = payload.threadId;
+    this.threadId = threadId;
   }
 
-  _verifyPayload(payload) {
-    const { id, threadId } = payload;
+  _verifyPayload({ id, threadId }) {
     if (!id || !threadId) {
       throw new Error('DELETE_COMMENT.NOT_CONTAIN_NEEDED_PROPERTY');
     }

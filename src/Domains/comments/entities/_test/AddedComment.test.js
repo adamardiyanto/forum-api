@@ -3,9 +3,11 @@ const AddedComment = require('../AddedComment');
 describe('an addedComment entities ', () => {
   it('should throw error when payload doesnt contain needed property ', () => {
     const payload = {
-      content: 'new comment',
+      content: null,
+      owner: 12345,
+      id: 'comment-123',
     };
-    expect(() => new Comment(payload).toThrowError('ADDED_COMMENT.NOT_CONTAIN_NEEDED_PROPERTY'));
+    expect(() => new AddedComment(payload)).toThrowError('ADDED_COMMENT.NOT_CONTAIN_NEEDED_PROPERTY');
   });
 
   it('should throw error when payload not meet data type specification ', () => {
