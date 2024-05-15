@@ -26,7 +26,6 @@ describe('Comment entities ', () => {
       username: 'user-123',
       content: 'new comment',
       date: '2022-04-04',
-      isDelete: false,
     };
 
     const comment = new Comment(payload);
@@ -36,6 +35,5 @@ describe('Comment entities ', () => {
     expect(comment.username).toEqual(payload.username);
     expect(comment.content).toEqual(payload.content);
     expect(comment.date).toEqual(payload.date);
-    expect(comment.isDelete).toEqual(payload.isDelete);
   });
 });

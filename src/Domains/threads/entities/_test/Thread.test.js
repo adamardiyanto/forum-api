@@ -55,7 +55,7 @@ describe('Thread entities ', () => {
     expect(thread.title).toEqual(payload.title);
     expect(thread.body).toEqual(payload.body);
     expect(thread.date).toEqual(payload.date);
-    expect(thread.owner).toEqual(payload.owner);
+    expect(thread.username).toEqual(payload.username);
     expect(thread.comments.length).toEqual(payload.comments.length);
     expect(thread.comments.length).toEqual(2);
     expect(thread.comments[0]).toStrictEqual(payload.comments[0]);

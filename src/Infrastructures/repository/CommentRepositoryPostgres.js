@@ -44,6 +44,23 @@ class CommentRepositoryPostgres extends CommentRepository {
       throw new AuthorizationError('Resource ini tidak boleh diakses!');
     }
   }
+
+  async getCommentByThreadId(threadId) {
+    const commentQuery = {
+      text: `SELECT
+                comments.id AS id,
+                users.username AS username,
+                comments.date AS date,
+                comments.content AS content,
+                comments.is_delete AS isDelete
+                FROM comments JOIN users on comments.owner = users.id
+                WHERE comments.thread_id = $1 ORDER BY date ASC`,
+      values: [threadId],
+    };
+    const commentResult = await this._pool.query(commentQuery);
+    const comments = commentResult.rows;
+    return comments;
+  }
 }
 
 module.exports = CommentRepositoryPostgres;

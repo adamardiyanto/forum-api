@@ -89,12 +89,6 @@ describe('ThreadRepositoryPostgres ', () => {
         body: '12345',
         owner: 'user-321',
       });
-      await CommentsTableTestHelper.addComment({
-        userId: 'user-321',
-        threadId: 'thread-123',
-        commentId: 'comment-123',
-        content: 'new comment',
-      });
       const threadRepositoryPostgres = new ThreadRepositoryPostgres(pool, {});
       const threadDetail = await threadRepositoryPostgres.getThreadById('thread-123');
       expect(threadDetail.id).toEqual('thread-123');
@@ -102,7 +96,6 @@ describe('ThreadRepositoryPostgres ', () => {
       expect(threadDetail.body).toEqual('12345');
       expect(threadDetail.date).toBeTruthy();
       expect(threadDetail.username).toEqual('dicoding');
-      expect(threadDetail.comments).toHaveLength(1);
     });
   });
 });

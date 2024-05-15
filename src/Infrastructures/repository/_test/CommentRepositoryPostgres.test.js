@@ -7,6 +7,7 @@ const NotFoundError = require('../../../Commons/exceptions/NotFoundError');
 const NewComment = require('../../../Domains/comments/entities/NewComment');
 const AddedComment = require('../../../Domains/comments/entities/AddedComment');
 const CommentRepositoryPostgres = require('../CommentRepositoryPostgres');
+const ThreadRepositoryPostgres = require('../ThreadRepositoryPostgres');
 
 describe('comment repositorypostgres', () => {
   afterEach(async () => {
@@ -138,6 +139,31 @@ describe('comment repositorypostgres', () => {
       const comments = await CommentsTableHelper.findCommentById('comment-123');
 
       expect(comments[0].is_delete).toBeTruthy();
+    });
+  });
+  describe('getComment', () => {
+    it('should return threa corrctly', async () => {
+      await UsersTableTestHelper.addUser({
+        id: 'user-321', username: 'dicoding', password: 'secret', fullname: 'Dicoding Indonesia',
+      });
+      await ThreadsTableTestHelper.addThread({
+        id: 'thread-123',
+        title: 'new thread',
+        body: '12345',
+        owner: 'user-321',
+      });
+      await CommentsTableHelper.addComment({
+        userId: 'user-321',
+        threadId: 'thread-123',
+        commentId: 'comment-123',
+        content: 'new comment',
+      });
+
+      const commentRepositoryPostgres = new CommentRepositoryPostgres(pool, {});
+      const comments = await commentRepositoryPostgres.getCommentByThreadId('thread-123');
+      expect(comments[0].id).toEqual('comment-123');
+      expect(comments[0].username).toEqual('dicoding');
+      expect(comments[0].content).toEqual('new comment');
     });
   });
 });
