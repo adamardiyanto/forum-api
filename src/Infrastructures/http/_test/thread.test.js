@@ -18,7 +18,7 @@ describe('thread endpoint ', () => {
   describe('POST /Threads', () => {
     it('response 201 and persisted thread', async () => {
       const payload = {
-        title: 'new thread',
+        title: 'new thread test',
         body: 'thread',
       };
       const accessToken = await ServerTestHelper.getAccessToken('user-123');

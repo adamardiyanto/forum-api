@@ -164,6 +164,7 @@ describe('comment repositorypostgres', () => {
       expect(comments[0].id).toEqual('comment-123');
       expect(comments[0].username).toEqual('dicoding');
       expect(comments[0].content).toEqual('new comment');
+      expect(comments[0].isDelete).toEqual(false);
     });
   });
 });
