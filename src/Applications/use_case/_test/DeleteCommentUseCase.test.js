@@ -4,9 +4,9 @@ const DeleteCommentUseCase = require('../DeleteCommentUseCase');
 
 describe('deleteUseCase ', () => {
   it('should orchestrating the add thread action correctly', async () => {
-    const owner = 'user-123';
-    const id = 'comment-123';
-    const threadId = 'thread-123';
+    const owner = 'user-test';
+    const id = 'comment-test';
+    const threadId = 'thread-test';
 
     const mockThreadRepository = new ThreadRepository();
     const mockCommentRepository = new CommentRepository();

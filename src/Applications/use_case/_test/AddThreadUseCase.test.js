@@ -5,14 +5,14 @@ const AddThreadUseCase = require('../AddthreadUseCase');
 
 describe('addThreadUseCase', () => {
   it('should orchestrating the add thread action correctly', async () => {
-    const useCaseOwner = 'user-123';
+    const useCaseOwner = 'user-test';
     const useCasePayload = {
       title: 'new thread',
       body: '12345',
     };
 
     const mockAddedThread = new AddedThread({
-      id: 'thread-123',
+      id: 'thread-test',
       title: useCasePayload.title,
       owner: useCaseOwner,
     });
@@ -20,7 +20,7 @@ describe('addThreadUseCase', () => {
     const mockThreadRepository = new ThreadRepository();
 
     mockThreadRepository.addThread = jest.fn(() => Promise.resolve(new AddedThread({
-      id: 'thread-123',
+      id: 'thread-test',
       title: useCasePayload.title,
       owner: useCaseOwner,
     })));

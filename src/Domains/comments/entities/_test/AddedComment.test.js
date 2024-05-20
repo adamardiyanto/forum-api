@@ -5,7 +5,7 @@ describe('an addedComment entities ', () => {
     const payload = {
       content: null,
       owner: 12345,
-      id: 'comment-123',
+      id: 'comment-test',
     };
     expect(() => new AddedComment(payload)).toThrowError('ADDED_COMMENT.NOT_CONTAIN_NEEDED_PROPERTY');
   });
@@ -14,7 +14,7 @@ describe('an addedComment entities ', () => {
     const payload = {
       content: 'new comment',
       owner: 12345,
-      id: 'comment-123',
+      id: 'comment-test',
     };
 
     expect(() => new AddedComment(payload)).toThrowError('ADDED_COMMENT.NOT_MEET_DATA_TYPE_SPECIFICATION');
@@ -23,8 +23,8 @@ describe('an addedComment entities ', () => {
   it('should create Comment entities correctly', () => {
     const payload = {
       content: 'new comment',
-      owner: 'user-123',
-      id: 'comment-123',
+      owner: 'user-test',
+      id: 'comment-test',
     };
 
     const addedComment = new AddedComment(payload);

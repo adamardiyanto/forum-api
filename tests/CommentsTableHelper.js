@@ -5,8 +5,8 @@ const pool = require('../src/Infrastructures/database/postgres/pool');
 const CommentsTableHelper = {
   async addComment({
     userId = 'user-321',
-    threadId = 'thread-123',
-    commentId = 'comment-123',
+    threadId = 'thread-test',
+    commentId = 'comment-test',
     content = 'new comment',
   }) {
     const query = {

@@ -21,7 +21,7 @@ describe('thread endpoint ', () => {
         title: 'new thread test',
         body: 'thread',
       };
-      const accessToken = await ServerTestHelper.getAccessToken('user-123');
+      const accessToken = await ServerTestHelper.getAccessToken('user-test');
       const server = await createServer(container);
 
       const response = await server.inject({
@@ -43,17 +43,17 @@ describe('thread endpoint ', () => {
     it('should response 200 and get detail thread', async () => {
       const server = await createServer(container);
       await ThreadsTableTestHelper.addThread({
-        id: 'thread-123',
-        owner: 'user-123',
+        id: 'thread-test',
+        owner: 'user-test',
       });
       await CommentsTableTestHelper.addComment({
-        userId: 'user-123',
-        threadId: 'thread-123',
+        userId: 'user-test',
+        threadId: 'thread-test',
       });
 
       const response = await server.inject({
         method: 'GET',
-        url: '/threads/thread-123',
+        url: '/threads/thread-test',
       });
       const responseJson = JSON.parse(response.payload);
       expect(response.statusCode).toEqual(200);

@@ -27,7 +27,7 @@ describe('a RegisteredUser entities', () => {
   it('should create registeredUser object correctly', () => {
     // Arrange
     const payload = {
-      id: 'user-123',
+      id: 'user-test',
       username: 'dicoding',
       fullname: 'Dicoding Indonesia',
     };

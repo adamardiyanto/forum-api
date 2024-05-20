@@ -10,7 +10,6 @@ class GetThreadUseCase {
     await this._threadRepository.isThreadExists(threadId);
     const threadDetail = await this._threadRepository.getThreadById(threadId);
     threadDetail.comments = await this._commentRepository.getCommentByThreadId(threadId);
-    console.log(threadDetail);
     threadDetail.comments.forEach((part, index, commentArrays) => {
       if (part.isDelete) {
         commentArrays[index].content = '**komentar telah dihapus**';

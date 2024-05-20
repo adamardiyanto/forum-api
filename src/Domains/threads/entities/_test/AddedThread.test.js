@@ -10,7 +10,7 @@ describe(' an AddedThread entities ', () => {
   });
   it('should throw error when payload not meet data type specification ', () => {
     const payload = {
-      id: 'thread-123',
+      id: 'thread-test',
       title: 'new thread',
       owner: 12345,
     };
@@ -19,9 +19,9 @@ describe(' an AddedThread entities ', () => {
   });
   it('should create AddedThread entities correctly', () => {
     const payload = {
-      id: 'thread-123',
+      id: 'thread-test',
       title: 'new thread',
-      owner: 'user-123',
+      owner: 'user-test',
     };
 
     const addedThread = new AddedThread(payload);

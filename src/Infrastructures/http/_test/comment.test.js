@@ -19,8 +19,8 @@ describe('/threads/{threadId}/comments endpoint', () => {
   });
 
   beforeAll(async () => {
-    accessToken = await ServerTestHelper.getAccessToken('user-123');
-    await ThreadsTableTestHelper.addThread({ owner: 'user-123' });
+    accessToken = await ServerTestHelper.getAccessToken('user-test');
+    await ThreadsTableTestHelper.addThread({ owner: 'user-test' });
   });
 
   describe('when POST /threads/{threadId}/comments', () => {
@@ -30,7 +30,7 @@ describe('/threads/{threadId}/comments endpoint', () => {
 
       const response = await server.inject({
         method: 'POST',
-        url: '/threads/thread-123/comments',
+        url: '/threads/thread-test/comments',
         payload,
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -49,7 +49,7 @@ describe('/threads/{threadId}/comments endpoint', () => {
 
       const response = await server.inject({
         method: 'POST',
-        url: '/threads/thread-123/comments',
+        url: '/threads/thread-test/comments',
         payload,
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -68,7 +68,7 @@ describe('/threads/{threadId}/comments endpoint', () => {
 
       const response = await server.inject({
         method: 'POST',
-        url: '/threads/thread-123/comments',
+        url: '/threads/thread-test/comments',
         payload,
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -106,13 +106,13 @@ describe('/threads/{threadId}/comments endpoint', () => {
       const server = await createServer(container);
 
       await CommentsTableTestHelper.addComment({
-        userId: 'user-123',
-        threadId: 'thread-123',
+        userId: 'user-test',
+        threadId: 'thread-test',
       });
 
       const response = await server.inject({
         method: 'DELETE',
-        url: '/threads/thread-123/comments/comment-123',
+        url: '/threads/thread-test/comments/comment-test',
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -129,13 +129,13 @@ describe('/threads/{threadId}/comments endpoint', () => {
       const anotherAccessToken = await ServerTestHelper.getAccessToken('user-321', 'qwerty');
 
       await CommentsTableTestHelper.addComment({
-        userId: 'user-123',
-        threadId: 'thread-123',
+        userId: 'user-test',
+        threadId: 'thread-test',
       });
 
       const response = await server.inject({
         method: 'DELETE',
-        url: '/threads/thread-123/comments/comment-123',
+        url: '/threads/thread-test/comments/comment-test',
         headers: {
           Authorization: `Bearer ${anotherAccessToken}`,
         },
@@ -169,7 +169,7 @@ describe('/threads/{threadId}/comments endpoint', () => {
 
       const response = await server.inject({
         method: 'DELETE',
-        url: '/threads/thread-123/comments/comment-id_test',
+        url: '/threads/thread-test/comments/comment-id_test',
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },

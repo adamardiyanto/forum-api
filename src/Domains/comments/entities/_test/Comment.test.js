@@ -10,11 +10,11 @@ describe('Comment entities ', () => {
 
   it('should throw error when payload not meet data type specification ', () => {
     const payload = {
-      id: 'comment-123',
+      id: 'comment-test',
       username: 12345,
       content: 'new comment',
-      date: 'thread-123',
-      isDelete: 'thread-123',
+      date: 'thread-test',
+      isDelete: 'thread-test',
     };
 
     expect(() => new Comment(payload)).toThrowError('COMMENT.NOT_MEET_DATA_TYPE_SPECIFICATION');
@@ -22,8 +22,8 @@ describe('Comment entities ', () => {
 
   it('should create Comment entities correctly', () => {
     const payload = {
-      id: 'comment-123',
-      username: 'user-123',
+      id: 'comment-test',
+      username: 'user-test',
       content: 'new comment',
       date: '2022-04-04',
     };

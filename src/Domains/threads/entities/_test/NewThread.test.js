@@ -6,7 +6,7 @@ describe('a NewThread entities', () => {
     const payload = {
       title: 'abc',
     };
-    const owner = 'user-123';
+    const owner = 'user-test';
     // Action and Assert
     expect(() => new NewThread(owner, payload)).toThrowError('NEW_THREAD.NOT_CONTAIN_NEEDED_PROPERTY');
   });
@@ -16,7 +16,7 @@ describe('a NewThread entities', () => {
       title: 'abc',
       body: 123,
     };
-    const owner = 'user-123';
+    const owner = 'user-test';
     // Action and Assert
     expect(() => new NewThread(owner, payload)).toThrowError('NEW_THREAD.NOT_MEET_DATA_TYPE_SPECIFICATION');
   });
@@ -46,7 +46,7 @@ describe('a NewThread entities', () => {
       title: 'new thread',
       body: 'body thread',
     };
-    const expectedUserId = 'user-123';
+    const expectedUserId = 'user-test';
     const { owner, title, body } = new NewThread(expectedUserId, payload);
 
     expect(title).toEqual(payload.title);

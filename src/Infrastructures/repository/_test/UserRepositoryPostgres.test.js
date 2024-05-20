@@ -41,14 +41,14 @@ describe('UserRepositoryPostgres', () => {
         password: 'secret_password',
         fullname: 'Dicoding Indonesia',
       });
-      const fakeIdGenerator = () => '123'; // stub!
+      const fakeIdGenerator = () => 'test'; // stub!
       const userRepositoryPostgres = new UserRepositoryPostgres(pool, fakeIdGenerator);
 
       // Action
       await userRepositoryPostgres.addUser(registerUser);
 
       // Assert
-      const users = await UsersTableTestHelper.findUsersById('user-123');
+      const users = await UsersTableTestHelper.findUsersById('user-test');
       expect(users).toHaveLength(1);
     });
 
@@ -59,7 +59,7 @@ describe('UserRepositoryPostgres', () => {
         password: 'secret_password',
         fullname: 'Dicoding Indonesia',
       });
-      const fakeIdGenerator = () => '123'; // stub!
+      const fakeIdGenerator = () => 'test'; // stub!
       const userRepositoryPostgres = new UserRepositoryPostgres(pool, fakeIdGenerator);
 
       // Action
@@ -67,7 +67,7 @@ describe('UserRepositoryPostgres', () => {
 
       // Assert
       expect(registeredUser).toStrictEqual(new RegisteredUser({
-        id: 'user-123',
+        id: 'user-test',
         username: 'dicoding',
         fullname: 'Dicoding Indonesia',
       }));
